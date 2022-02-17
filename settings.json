@@ -1,0 +1,40 @@
+{
+    "window":
+    {
+        "name": "Ascii Cam",
+
+        "size":
+        {
+            "x": 800,
+            "y": 720
+        }
+    },
+
+    "image":
+    {
+        "size":
+        {
+            "x": 160,
+            "y": 90
+        },
+
+        "color":
+        {
+            "background": [0, 0, 0],
+            "one": "True",
+            "color": [255,255,255],
+            "invert": "False",
+            "filter": {
+                "red": 1,
+                "green": 1,
+                "blue":  1
+            }
+        },
+
+        "flip_x": "False",
+        "flip_y": "True",
+        "ascii_array": [" ", ".",":","!","*","%","$","@","&","#","S"]
+    },
+
+    "v_cam": "False"
+}

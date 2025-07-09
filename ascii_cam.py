@@ -39,24 +39,22 @@ def convert_to_ascii(img, settings):      #? Converts PIL image to ascii charact
 
 
 def generate_img(ascii_image, width, height, img_width, img_height, pixels_rgb, settings):       #? Generates PIL image out of ascii characters list
+    img = Image.new(mode="RGB", size=(img_width*6, int(img_height)*10), color=tuple(settings["image"]["color"]["background"]))
+    d = ImageDraw.Draw(img)
+    for row in range(len(ascii_image)):
+        ascii_image[row] = list(ascii_image[row])
+
     if settings["image"]["color"]["one"] == "True":
-        img = Image.new(mode="RGB", size=(img_width*6, int(img_height)*10), color=tuple(settings["image"]["color"]["background"]))
-        d = ImageDraw.Draw(img)
         for row in range(len(ascii_image)):
-            d.text(xy=(0,10*row), text=ascii_image[row], fill=(int(255*settings["image"]["color"]["filter"]["red"]), int(255*settings["image"]["color"]["filter"]["green"]), int(255*settings["image"]["color"]["filter"]["blue"])), fontsize=1)
-        img = img.resize((width, height))
-        return img
-    
+            for pixel in range(len(ascii_image[row])):
+                d.text(xy=(6*pixel,10*row), text=ascii_image[row][pixel], fill=(int(255*settings["image"]["color"]["filter"]["red"]), int(255*settings["image"]["color"]["filter"]["green"]), int(255*settings["image"]["color"]["filter"]["blue"])), fontsize=1)
+
     else:
-        img = Image.new(mode="RGB", size=(img_width*6, int(img_height)*10), color=tuple(settings["image"]["color"]["background"]))
-        d = ImageDraw.Draw(img)
-        for row in range(len(ascii_image)):
-            ascii_image[row] = list(ascii_image[row])
         for row in range(len(ascii_image)):
             for pixel in range(len(ascii_image[row])):
                 d.text(xy=(6*pixel,10*row), text=ascii_image[row][pixel], fill=(pixels_rgb[row*img_width+pixel][2]*settings["image"]["color"]["filter"]["blue"], pixels_rgb[row*img_width+pixel][1]*settings["image"]["color"]["filter"]["green"], pixels_rgb[row*img_width+pixel][0]*settings["image"]["color"]["filter"]["red"]), fontsize=1)
-        img = img.resize((width, height))
-        return img
+    img = img.resize((width, height))
+    return img
 
 
 def main_cam_thread(settings):

@@ -3,7 +3,7 @@
 This Python project captures video from your laptop's webcam and converts it into real-time ASCII art using OpenCV. Each frame is rendered with a customizable list of characters, resolution, and optional filters — all configurable via a simple settings file.
 
 
-<img width="814" alt="image" src="https://github.com/user-attachments/assets/decfdef9-dde5-4575-a31e-e71d4d902eba" />
+<img width="600" alt="image" src="https://github.com/user-attachments/assets/decfdef9-dde5-4575-a31e-e71d4d902eba" />
 
 ## 🛠 Features
 
